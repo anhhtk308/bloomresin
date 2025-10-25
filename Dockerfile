@@ -20,6 +20,8 @@ WORKDIR /app
 
 # Copy jar từ stage build
 COPY --from=builder /app/target/*.jar app.jar
+# Copy lại thư mục JSP vào image runtime (đề phòng trường hợp JAR không chứa JSP)
+COPY --from=builder /app/src/main/webapp /app/src/main/webapp
 
 EXPOSE 8080
 
