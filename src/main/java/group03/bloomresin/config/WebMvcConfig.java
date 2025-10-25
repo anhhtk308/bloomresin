@@ -22,10 +22,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
         bean.setSuffix(".jsp");
         return bean;
     }
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.viewResolver(viewResolver());
-    }
+     @Override
+     public void configureViewResolvers(ViewResolverRegistry registry) {
+         registry.viewResolver(viewResolver());
+     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/**").addResourceLocations("classpath:/static/upload/");

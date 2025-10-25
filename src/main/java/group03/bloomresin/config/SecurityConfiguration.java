@@ -65,14 +65,16 @@ public class SecurityConfiguration {
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 http
-                        .requiresChannel(channel -> channel.anyRequest().requiresSecure())
+                        // .requiresChannel(channel -> channel.anyRequest().requiresSecure())
                         .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/images/**").permitAll()
+                                .requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/images/**",
+                                        "/WEB-INF/**", "/client/**").permitAll()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/employee/**").hasRole("EMPLOYEE")
                                 .requestMatchers("/customer/**").hasRole("CUSTOMER")
                                 .anyRequest().authenticated()
                         )
+                        .csrf(csrf -> csrf.disable())
                         .sessionManagement(session -> session
                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                                 .invalidSessionUrl("/login?expired")
