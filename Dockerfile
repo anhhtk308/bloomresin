@@ -7,6 +7,7 @@ WORKDIR /app
 # Copy source code
 COPY pom.xml .
 COPY src ./src
+COPY src/main/webapp ./src/main/webapp
 
 # Build project, skip tests
 RUN mvn clean package -DskipTests -Duser.language=en -Duser.country=US -Dfile.encoding=UTF-8
